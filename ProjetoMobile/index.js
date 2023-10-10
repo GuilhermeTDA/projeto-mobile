@@ -2,7 +2,7 @@
  * @format
  */
 
-import {AppRegistry} from 'react-native';
+import {AppRegistry, TextInput} from 'react-native';
 import App2 from './App2';
 import {name as appName} from './app.json';
 
