@@ -1,118 +1,74 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
+  TextInput,
+  Image,
+  ScrollView,
 } from 'react-native';
+import ListaFlat from './ListaFlat';
+import ListaSection from './ListaSection';
+import Ex4 from './Ex4';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const App2 = () => {
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+  const lista = [
+    { key: 1, descricao: 'Joao' },
+    { key: 2, descricao: 'jorge' },
+    { key: 3, descricao: 'kleber' },
+    { key: 4, descricao: 'robson' },
+];
+
+  // const listaSection = [
+  //   { title: 'A', data: [{ key: 1, descricao: 'Ana' }] },
+  //   { title: 'B', data: [{ key: 2, descricao: 'Bruno' }] },
+  //   { title: 'C', data: [{ key: 3, descricao: 'Carlos' }] },
+  //   { title: 'D', data: [{ key: 4, descricao: 'Douglas' }] },
+  //   { title: 'E', data: [{ key: 5, descricao: 'Elio' }] },
+  //   { title: 'F', data: [{ key: 6, descricao: 'Fábio' }] },
+  // ];
+
+  return (<>
+    <View>
+      <>
+        {/* <ListaFlat array={lista} /> */}
+        {/* <ListaSection array={listaSection} /> */}
+        <Ex4 lista={lista}/>
+      </>
+
+
     </View>
+
+
+  </>
   );
 }
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:kkmmmmmmmkkkkkkkkk
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+export default App2;
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    backgroundColor: 'yellow',
+    borderWidth: 3,
+    borderColor: 'red'
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+  caixaTexto: {
+    backgroundColor: 'white',
+    borderWidth: 3,
+    borderColor: 'orange'
 
-export default App;
+  },
+  ex2: {
+    backgroundColor: 'green',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  imagem: {
+    width: 200,
+    height: 200
+  }
+
+});
