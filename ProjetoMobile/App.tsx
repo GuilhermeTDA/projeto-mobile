@@ -1,74 +1,50 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Image,
-  ScrollView,
-} from 'react-native';
-import ListaFlat from './ListaFlat';
-import ListaSection from './ListaSection';
-import Ex4 from './Ex4';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text, View } from 'react-native';
+import Principal from './Principal';
 
-const App2 = () => {
+type StackParamList = {
+  Home: undefined;
+  Detalhes: undefined;
+}
 
+type Props = NativeStackScreenProps<StackParamList, 'Home'>;
 
-  const lista = [
-    { key: 1, descricao: 'Joao' },
-    { key: 2, descricao: 'jorge' },
-    { key: 3, descricao: 'kleber' },
-    { key: 4, descricao: 'robson' },
-];
+type HomeScreenNavegationProp = Props['navigation'];
 
-  // const listaSection = [
-  //   { title: 'A', data: [{ key: 1, descricao: 'Ana' }] },
-  //   { title: 'B', data: [{ key: 2, descricao: 'Bruno' }] },
-  //   { title: 'C', data: [{ key: 3, descricao: 'Carlos' }] },
-  //   { title: 'D', data: [{ key: 4, descricao: 'Douglas' }] },
-  //   { title: 'E', data: [{ key: 5, descricao: 'Elio' }] },
-  //   { title: 'F', data: [{ key: 6, descricao: 'Fábio' }] },
-  // ];
+type HomeScreenRouteProp = Props
+['route'];
 
-  return (<>
-    <View>
-      <>
-        {/* <ListaFlat array={lista} /> */}
-        {/* <ListaSection array={listaSection} /> */}
-        <Ex4 lista={lista}/>
-      </>
-
-
+const HomeScreen = ({ navigation, route }: Props) => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Principal navigation={navigation} route={route} />
     </View>
+  );
+};
 
-
-  </>
+const DetalhesScreen = () => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Detalhes Screen</Text>
+  </View>
   );
 }
 
-export default App2;
+const Stack = createNativeStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'yellow',
-    borderWidth: 3,
-    borderColor: 'red'
-  },
-  caixaTexto: {
-    backgroundColor: 'white',
-    borderWidth: 3,
-    borderColor: 'orange'
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName = "Home">
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="Detalher" component={DetalhesScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
 
-  },
-  ex2: {
-    backgroundColor: 'green',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  imagem: {
-    width: 200,
-    height: 200
-  }
+export type {HomeScreenNavegationProp, HomeScreenRouteProp,Props};
+export default App;
 
-});
