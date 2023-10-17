@@ -11,9 +11,9 @@ import {
 import ListaFlat from './ListaFlat';
 import ListaSection from './ListaSection';
 import Ex4 from './Ex4';
-import { Props } from './App';
+import { HomeProps } from './src/types';
 
-const Principal = ({ navigation, route }: Props) => {
+const Principal = ({ navigation, route }: HomeProps) => {
 
 
   // const lista = [
