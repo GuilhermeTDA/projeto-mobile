@@ -8,10 +8,10 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
-import ListaFlat from './ListaFlat';
-import ListaSection from './ListaSection';
-import Ex4 from './Ex4';
-import { HomeProps } from './src/types';
+import { HomeProps } from '../types';
+import ExemploStylesText from './ExemploStylesText';
+import ExemploStylesView from './ExemploStyleView';
+import Tela_login from '../screens/tela_login';
 
 const Principal = ({ navigation, route }: HomeProps) => {
 
@@ -35,7 +35,10 @@ const Principal = ({ navigation, route }: HomeProps) => {
   return (<>
     <View>
       <>
-        <Button title="Go to Details" onPress={() => navigation.navigate('Detalhes')} />
+        {/* <Button title="Go to Details" onPress={() => navigation.navigate('Detalhes')} /> */}
+        <Tela_login />
+        {/* <ExemploStylesText />
+        <ExemploStylesView /> */}
         {/* <ListaFlat array={lista} /> */}
         {/* <ListaSection array={listaSection} /> */}
         {/* <Ex4 lista={lista} /> */}
