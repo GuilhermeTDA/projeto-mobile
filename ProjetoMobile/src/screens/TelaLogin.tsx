@@ -14,11 +14,16 @@ const tela = ({ navigation, route }: LoginProps) => {
     function logar() {
         setIsLoading(true);
 
-        auth()
-            .signInWithEmailAndPassword(email, senha)
-            .then(() => { navigation.navigate('Home') })
-            .catch((error) => console.log(error))
-            .finally(() => setIsLoading(false))
+        try {
+            auth()
+                .signInWithEmailAndPassword(email, senha)
+                .then(() => { navigation.navigate('Home') })
+                .catch((error) => console.log(error))
+                .finally(() => setIsLoading(false))
+        } catch (error) {
+            console.log(error);
+            setIsLoading(false);
+        }
     }
 
     function redefinirSenha() {
@@ -36,13 +41,13 @@ const tela = ({ navigation, route }: LoginProps) => {
                     source={require('../assets/bolsonaro2.jpg')} />
                 <Text>Email</Text>
                 <TextInput style={styles.box}
-                onChange={(text) => {setEmail(text) }} />
+                    onChangeText={(text) => { setEmail(text) }} />
                 <Text>Senha</Text>
-                <TextInput style={styles.box} 
-                onChange={(text) => {setSenha(text) }}/>
+                <TextInput style={styles.box}
+                    onChangeText={(text) => { setSenha(text) }} />
                 <Pressable style={styles.botao}
-                onPress={() => logar()}
-                disabled={isLoading} >
+                    onPress={() => logar()}
+                    disabled={isLoading} >
 
                     <Text style={{ fontSize: 20 }}> Login</Text>
                 </Pressable>
@@ -53,10 +58,12 @@ const tela = ({ navigation, route }: LoginProps) => {
 
                     <Text style={{ fontSize: 15 }}> esqueci a senha</Text>
                 </Pressable>
-                <Pressable style={styles.conta}>
+                <Pressable style={styles.conta} onPress={() => navigation.navigate('Cadastro')}>
 
                     <Text style={{ fontSize: 15 }}>criar conta</Text>
                 </Pressable>
+
+
             </View>
         </View>
     )
@@ -91,6 +98,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#d4d0cf',
         marginBottom: 20,
         alignItems: 'center',
+        justifyContent: 'center',
 
     },
     esqueci: {
@@ -103,6 +111,7 @@ const styles = StyleSheet.create({
         //marginBottom: 20,
         // alignSelf: 'baseline',
         alignItems: 'center',
+        justifyContent: 'center',
     },
     conta: {
         width: 85,
@@ -114,12 +123,14 @@ const styles = StyleSheet.create({
         //marginBottom: 20,
         // alignSelf: 'flex-end',
         alignItems: 'center',
+        justifyContent: 'center',
     },
     botoes: {
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'space-around',
         flex: 1
+        
     },
     center: {
         justifyContent: 'center',
