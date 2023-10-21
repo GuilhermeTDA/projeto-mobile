@@ -6,6 +6,7 @@ const DetalhesScreen = () => {
         <Text>Detalhes Screen</Text>
       </View>
     );
+     
   }
 
   export default DetalhesScreen;

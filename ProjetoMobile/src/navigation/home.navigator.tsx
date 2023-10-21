@@ -4,6 +4,7 @@ import HomeScreen from "../screens/HomeScreen";
 import { RootStackParamList } from "../types";
 import LoginScreen from "../screens/LoginScreen";
 import CadScreen from "../screens/CadScreen";
+import NotaScreen from "../screens/NotaScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,6 +15,7 @@ const HomeNavigator = () => {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Detalhes" component={DetalhesScreen} />
           <Stack.Screen name="Cadastro" component={CadScreen} />
+          <Stack.Screen name="Notas" component={NotaScreen} />
         </Stack.Navigator>
     )
   }
