@@ -1,4 +1,4 @@
-import {LoginProps } from '../types';
+import { LoginProps } from '../types';
 import TelaLogin from './TelaLogin';
 
 const LoginScreen = ({ navigation, route }: LoginProps) => {
