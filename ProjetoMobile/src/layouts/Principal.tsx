@@ -49,6 +49,11 @@ const Principal = ({ navigation, route }: HomeProps) => {
 
         <Text style={{ fontSize: 15 }}>Criar nota</Text>
       </Pressable>
+      <Pressable style={styles.notas} onPress={() => navigation.navigate('CadCliente')}>
+
+        <Text style={{ fontSize: 15 }}>Criar Cliente</Text>
+      </Pressable>
+      
 {/* 
       <Ex4 lista={lista} /> */}
 

@@ -1,62 +1,71 @@
 import { Text, View, TextInput, StyleSheet, Pressable, Alert, Image } from 'react-native';
-import auth from "@react-native-firebase/auth";
 import { useState } from 'react';
-import { CadProps, NotasProps } from '../types';
+import { ClienteProps } from '../types';
 import firestore from "@react-native-firebase/firestore";
 
-const nota = ({ navigation, route }: NotasProps) => {
+const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
-    const [titulo, setTitulo] = useState('');
-    const [descricao, setDescricao] = useState('');
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [endereco, setEndereco] = useState('');
+    const [dataNasc, setDataNasc] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    function cadastrarNota() {
+    function cadastrarCliente() {
         setIsLoading(true);
 
         firestore()
-            .collection('notas')
+            .collection('Cliente')
             .add({
-                titulo,
-                descricao,
+                nome,
+                cpf,
+                endereco,
+                dataNasc,
                 created_at: firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
-                Alert.alert("Nota", "Cadastrada com sucesso")
+                Alert.alert("Cliente", "Cliente cadastrado com sucesso")
                 navigation.navigate('Home')
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
     }
+
     return (
-    <View style={styles.container}>
-        <View style={styles.center}>
-            <Image style={styles.imagem}
-                source={require('../assets/elsa.jpeg')} />
-            <Text>Titulo</Text>
+        <View style={styles.container}>
+            <View style={styles.center}>
+                <Image style={styles.imagem}
+                    source={require('../assets/sonic.jpg')} />
+                <Text>Nome</Text>
 
-            <TextInput style={styles.box} onChangeText={(text) => { setTitulo(text) }}/>
+                <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }}/>
 
-            <Text>Descricao</Text>
+                <Text>cpf</Text>
 
-            <TextInput style={styles.box} onChangeText={(text) => { setDescricao(text) }} />
+                <TextInput style={styles.box} onChangeText={(text) => { setCpf(text) }}/>
 
-            <Pressable style={styles.botao} onPress={() => cadastrarNota()}>
-                <Text style={{ fontSize: 20 }}> Cadastrar</Text>
-            </Pressable>
+                <Text>endereço</Text>
 
-            <Pressable style={styles.voltar} onPress={() => navigation.navigate('Home')}>
+                <TextInput style={styles.box}  onChangeText={(text) => { setEndereco(text) }}/>
 
-                <Text style={{ fontSize: 15 }}>Voltar</Text>
-            </Pressable>
+                <Text>data de nascimento</Text>
+
+                <TextInput style={styles.box}  onChangeText={(text) => { setDataNasc(text) }}/>
+
+                <Pressable style={styles.botao} onPress={() => cadastrarCliente()}>
+                    <Text style={{ fontSize: 20 }}> Cadastrar cliente</Text>
+                </Pressable>
+
+                <Pressable style={styles.voltar} onPress={() => navigation.navigate('Login')}>
+
+                    <Text style={{ fontSize: 15 }}>Voltar</Text>
+                </Pressable>
+            </View>
         </View>
-    </View>
-)
-};
+    )
+}
 
-
-
-export default nota;
-
+export default cadastroCliente;
 
 const styles = StyleSheet.create({
     container: {
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     botao: {
-        width: 110,
+        width: 190,
         height: 40,
         borderWidth: 1,
         borderColor: 'gray',

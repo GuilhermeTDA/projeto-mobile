@@ -54,7 +54,8 @@ const tela = ({ navigation, route }: LoginProps) => {
             </View>
 
             <View style={styles.botoes}>
-                <Pressable style={styles.esqueci}>
+                <Pressable style={styles.esqueci}  onPress={() => redefinirSenha()}
+                    disabled={isLoading} >
 
                     <Text style={{ fontSize: 15 }}> esqueci a senha</Text>
                 </Pressable>
@@ -62,7 +63,6 @@ const tela = ({ navigation, route }: LoginProps) => {
 
                     <Text style={{ fontSize: 15 }}>criar conta</Text>
                 </Pressable>
-
 
             </View>
         </View>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent: 'space-around',
         flex: 1
-        
+
     },
     center: {
         justifyContent: 'center',
