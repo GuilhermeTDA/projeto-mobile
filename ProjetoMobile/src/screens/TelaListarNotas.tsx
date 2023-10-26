@@ -1,5 +1,4 @@
-import { Text, View, TextInput, StyleSheet, Pressable, Alert, Image, FlatList } from 'react-native';
-import auth from "@react-native-firebase/auth";
+import { Text, View, FlatList, StyleSheet, Pressable, Alert, Image, } from 'react-native';
 import { useState, useEffect } from 'react';
 import { ListarNotasProps } from '../types';
 import firestore from "@react-native-firebase/firestore";
@@ -46,23 +45,50 @@ export default ({ navigation, route }: ListarNotasProps) => {
             .finally(() => setIsLoading(false));
     }
 
+    function alterarNota(id: string) {
+        navigation.navigate("AlterarNota",
+            { id: id, palavra: 'pao' })
+    }
+
     return (
-        <View style={styles.card}>
-            <View style={styles.dados_card}>
-                <Text >{info.index}</Text>
-                <Text style={{ fontSize: 35 }}>{info.item.titulo}</Text>
-                <Text >{info.item.descricao}</Text>
-            </View>
-            <View style={styles.botao_deletar}>
-                <Pressable onPress={() => deletarNota(info.item.id)}>
-                    <Text style={{ fontWeight: "bold", fontSize: 50 }}>
-                        X
-                    </Text>
-                </Pressable>
-            </View>
+        <View>
+            <Text style={{ fontSize: 30 }}>Listagem de Notas</Text>
+            <FlatList
+                data={notas}
+                renderItem={(info) => {
+                    return (
+                        <View style={styles.card}>
+                            <View style={styles.dados_card}>
+                                <Text>{info.index}</Text>
+                                <Text style={{ fontSize: 35 }}>{info.item.titulo}</Text>
+                                <Text>{info.item.descricao}</Text>
+                            </View>
+
+                            <View style={styles.botao_alterar}>
+                                <Pressable
+                                    onPress={() => alterarNota(info.item.id)}>
+                                        <Text style={{fontWeight:"bold", fontSize: 40}}>
+                                            A
+                                        </Text>
+                                </Pressable>
+                            </View>
+
+                            <View style={styles.botao_deletar}>
+                                <Pressable
+                                    onPress={() => deletarNota(info.item.id)}>
+                                    <Text style={{ fontWeight: "bold", fontSize: 50 }}>
+                                        X
+                                    </Text>
+                                </Pressable>
+                            </View>
+
+                        </View>
+                    );
+                }}>
+
+            </FlatList>
         </View>
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -80,6 +106,12 @@ const styles = StyleSheet.create({
     botao_deletar: {
         backgroundColor: 'red',
         width: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    botao_alterar:{
+        backgroundColor: 'yellow', 
+        width: 40,
         justifyContent: 'center',
         alignItems: 'center',
     }
