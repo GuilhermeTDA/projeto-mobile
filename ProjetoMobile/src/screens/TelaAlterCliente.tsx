@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ClienteProps } from '../types';
 import firestore from "@react-native-firebase/firestore";
 
+
 const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
     const [nome, setNome] = useState('');
@@ -15,31 +16,6 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
     const [estado, setEstado] = useState('');
     const [dataNasc, setDataNasc] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
-    function cadastrarCliente() {
-        setIsLoading(true);
-
-        firestore()
-            .collection('Cliente')
-            .add({
-                nome,
-                cpf,
-                rua,
-                numero,
-                bairro,
-                complemento,
-                cidade,
-                estado,
-                dataNasc,
-                created_at: firestore.FieldValue.serverTimestamp()
-            })
-            .then(() => {
-                Alert.alert("Cliente", "Cliente cadastrado com sucesso")
-                navigation.navigate('Home')
-            })
-            .catch((error) => console.log(error))
-            .finally(() => setIsLoading(false));
-    }
 
     function alterarCliente() {
         setIsLoading(true);
@@ -109,8 +85,8 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
                 <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
 
-                <Pressable style={styles.botao} onPress={() => cadastrarCliente()}>
-                    <Text style={{ fontSize: 20 }}> Cadastrar cliente</Text>
+                <Pressable style={styles.botao}  onPress={() => navigation.navigate('CadCliente')}>
+                    <Text style={{ fontSize: 20 }}> Voltar</Text>
                 </Pressable>
 
                 <Pressable style={styles.botao} onPress={() => alterarCliente()}>
@@ -119,13 +95,10 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
                 <View style={styles.botoes}>
                     <Pressable style={styles.botao
-                    } onPress={() => cadastrarCliente()}>
+                    } onPress={() => removerCliente()}>
                         <Text style={{ fontSize: 20 }}> Remover cliente</Text>
                     </Pressable>
 
-                    <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarCliente')}>
-                        <Text style={{ fontSize: 20 }}> Listar clientes</Text>
-                    </Pressable>
                 </View>
                 <Pressable style={styles.voltar} onPress={() => navigation.navigate('Login')}>
 
@@ -137,6 +110,7 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 }
 
 export default cadastroCliente;
+
 
 const styles = StyleSheet.create({
     container: {
