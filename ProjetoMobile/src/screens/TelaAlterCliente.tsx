@@ -1,11 +1,13 @@
-import { Text, View, TextInput, StyleSheet, Pressable, Alert, Image } from 'react-native';
-import { useState } from 'react';
-import { ClienteProps } from '../types';
+import { useEffect, useState } from "react";
+import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import firestore from "@react-native-firebase/firestore";
+import { AlterarClienteProps } from "../types";
+import { IClientes } from "../models/IClientes";
 
 
-const cadastroCliente = ({ navigation, route }: ClienteProps) => {
+const cadastroCliente = ({ navigation, route }: AlterarClienteProps) => {
 
+    const [id,] = useState(route.params.id);
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [rua, setRua] = useState('');
@@ -22,7 +24,7 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
         firestore()
             .collection('Clientes')
-            .doc(cpf)
+            .doc(id)
             .update({
                 nome,
                 cpf,
@@ -43,9 +45,38 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
     }
+    async function carregar() {
+        setIsLoading(true);
+        const resultado = await firestore()
+            .collection('clientes')
+            .doc(id)
+            .get();
+
+        const cliente = {
+            id: resultado.id,
+            ...resultado.data()
+        } as IClientes;
+
+        setNome(cliente.nome);
+        setCpf(cliente.cpf);
+        setRua(cliente.rua);
+        setNumero(cliente.numero);
+        setBairro(cliente.bairro);
+        setComplemento(cliente.complemento);
+        setCidade(cliente.cidade);
+        setEstado(cliente.estado);
+        setDataNasc(cliente.dataNasc);
+        setIsLoading(false);
+
+    };
+
+    useEffect(() => {
+        carregar();
+    }, []);
 
     return (
         <View style={styles.container}>
+            <ScrollView>
             <View style={styles.center}>
                 <Image style={styles.imagem}
                     source={require('../assets/sonic.jpg')} />
@@ -85,17 +116,17 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
                 <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
 
-                <Pressable style={styles.botao}  onPress={() => navigation.navigate('CadCliente')}>
+                <Pressable style={styles.botao} onPress={() => navigation.navigate('CadCliente')}>
                     <Text style={{ fontSize: 20 }}> Voltar</Text>
                 </Pressable>
 
                 <Pressable style={styles.botao} onPress={() => alterarCliente()}>
-                    <Text style={{ fontSize: 20 }}> Alterar cliente</Text>
+                    <Text style={{ fontSize: 20 }}>Salvar alteração</Text>
                 </Pressable>
 
                 <View style={styles.botoes}>
-                    <Pressable style={styles.botao
-                    } onPress={() => removerCliente()}>
+                    <Pressable style={styles.botao} 
+                        onPress={() => {}}>
                         <Text style={{ fontSize: 20 }}> Remover cliente</Text>
                     </Pressable>
 
@@ -105,6 +136,7 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
                     <Text style={{ fontSize: 15 }}>Voltar</Text>
                 </Pressable>
             </View>
+            </ScrollView>
         </View>
     )
 }

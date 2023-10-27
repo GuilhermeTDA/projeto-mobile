@@ -41,10 +41,6 @@ const Principal = ({ navigation, route }: HomeProps) => {
 
       <Button title="Go to Details" onPress={() => navigation.navigate('Detalhes')} />
 
-      {/* { <ExemploStylesText />
-        <ExemploStylesView  /> } */}
-      {/* <ListaFlat array={lista} />
-        <ListaSection array={listaSection} /> */}
       <Pressable style={styles.notas} onPress={() => navigation.navigate('Notas')}>
 
         <Text style={{ fontSize: 15 }}>Criar nota</Text>
@@ -53,9 +49,22 @@ const Principal = ({ navigation, route }: HomeProps) => {
 
         <Text style={{ fontSize: 15 }}>Criar Cliente</Text>
       </Pressable>
-      
-{/* 
-      <Ex4 lista={lista} /> */}
+
+
+      <Pressable style={styles.botao} onPress={() => navigation.navigate('AlterarCliente', { id: 'string' })}>
+        <Text style={{ fontSize: 20 }}> Alterar cliente</Text>
+      </Pressable>
+
+      <View style={styles.botoes}>
+        <Pressable style={styles.botao
+        } onPress={() => {}}>
+          <Text style={{ fontSize: 20 }}> Remover cliente</Text>
+        </Pressable>
+
+        {/* <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarCliente')}>
+          <Text style={{ fontSize: 20 }}> Listar clientes</Text>
+        </Pressable> */}
+      </View>
 
 
 
@@ -72,7 +81,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     backgroundColor: '#E0FFFF',
     margin: 10,
-},
+  },
   caixaTexto: {
     backgroundColor: 'white',
     borderWidth: 3,
@@ -101,5 +110,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
   },
+  botao: {
+    width: 190,
+    height: 40,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    backgroundColor: '#d4d0cf',
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+
+},
+botoes: {
+  flexDirection: 'row',
+  alignItems: 'flex-end',
+  justifyContent: 'space-around',
+  flex: 1
+
+},
 
 });
