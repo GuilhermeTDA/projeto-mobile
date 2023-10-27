@@ -1,4 +1,4 @@
-import { Text, View, TextInput, StyleSheet, Pressable, Alert, Image } from 'react-native';
+import { Text, View, TextInput, StyleSheet, Pressable, Alert, Image, ScrollView } from 'react-native';
 import { useState } from 'react';
 import { ClienteProps } from '../types';
 import firestore from "@react-native-firebase/firestore";
@@ -41,99 +41,67 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
             .finally(() => setIsLoading(false));
     }
 
-    function alterarCliente() {
-        setIsLoading(true);
 
-        firestore()
-            .collection('Clientes')
-            .doc(cpf)
-            .update({
-                nome,
-                cpf,
-                rua,
-                numero,
-                bairro,
-                complemento,
-                cidade,
-                estado,
-                dataNasc,
-                created_at: firestore.FieldValue.serverTimestamp()
-            })
-            .then(() => {
-                Alert.alert("Cliente", "Alterado com sucesso")
-                navigation.goBack();
-            })
-
-            .catch((error) => console.log(error))
-            .finally(() => setIsLoading(false));
-    }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.center}>
-                <Image style={styles.imagem}
-                    source={require('../assets/sonic.jpg')} />
-                <Text>Nome</Text>
+        <ScrollView>
+            <View style={styles.container}>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }} />
+                <View style={styles.center}>
+                    <Image style={styles.imagem}
+                        source={require('')} />
+                    <Text>Nome</Text>
 
-                <Text>cpf</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setCpf(text) }} />
+                    <Text>cpf</Text>
 
-                <Text>Nome da Rua</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setCpf(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setRua(text) }} />
+                    <Text>Nome da Rua</Text>
 
-                <Text>Número</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setRua(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setNumero(text) }} />
+                    <Text>Número</Text>
 
-                <Text>Bairro</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setNumero(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setBairro(text) }} />
+                    <Text>Bairro</Text>
 
-                <Text>Complemento</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setBairro(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setComplemento(text) }} />
+                    <Text>Complemento</Text>
 
-                <Text>Cidade</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setComplemento(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setCidade(text) }} />
+                    <Text>Cidade</Text>
 
-                <Text>Estado</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setCidade(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setEstado(text) }} />
+                    <Text>Estado</Text>
 
-                <Text>data de nascimento</Text>
+                    <TextInput style={styles.box} onChangeText={(text) => { setEstado(text) }} />
 
-                <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
+                    <Text>data de nascimento</Text>
 
-                <Pressable style={styles.botao} onPress={() => cadastrarCliente()}>
-                    <Text style={{ fontSize: 20 }}> Cadastrar cliente</Text>
-                </Pressable>
+                    <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
 
-                <Pressable style={styles.botao} onPress={() => alterarCliente()}>
-                    <Text style={{ fontSize: 20 }}> Alterar cliente</Text>
-                </Pressable>
-
-                <View style={styles.botoes}>
-                    <Pressable style={styles.botao
-                    } onPress={() => cadastrarCliente()}>
-                        <Text style={{ fontSize: 20 }}> Remover cliente</Text>
+                    <Pressable style={styles.botao} onPress={() => cadastrarCliente()}>
+                        <Text style={{ fontSize: 20 }}> Cadastrar cliente</Text>
                     </Pressable>
 
-                    <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarCliente')}>
-                        <Text style={{ fontSize: 20 }}> Listar clientes</Text>
-                    </Pressable>
                 </View>
                 <Pressable style={styles.voltar} onPress={() => navigation.navigate('Login')}>
 
                     <Text style={{ fontSize: 15 }}>Voltar</Text>
                 </Pressable>
+                
             </View>
-        </View>
-    )
+
+       
+
+         </ScrollView >
+    );
 }
 
 export default cadastroCliente;
