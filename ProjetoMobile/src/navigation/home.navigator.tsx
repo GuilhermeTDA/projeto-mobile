@@ -8,6 +8,10 @@ import NotaScreen from "../screens/NotaScreen";
 import CLienteScreen from "../screens/ClienteScreen";
 import AlterarNotaScreen from "../screens/AlterarNotaScreen";
 import AlterarClienteScreen from "../screens/AlterarClienteScreen";
+import TelaListarNotas from "../screens/TelaListarNotas";
+import TelaListarCliente from "../screens/TelaListarCliente";
+import ListarClientesScreen from "../screens/ListarClientesScreen";
+import ListarNotaScreen from "../screens/ListarNotasScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -22,6 +26,9 @@ const HomeNavigator = () => {
           <Stack.Screen name="CadCliente" component={CLienteScreen} />
           <Stack.Screen name="AlterarNota" component={AlterarNotaScreen} />
           <Stack.Screen name="AlterarCliente" component={AlterarClienteScreen} />
+          <Stack.Screen name="ListarNotas" component={ListarNotaScreen} />
+          <Stack.Screen name="ListarClientes" component={ListarClientesScreen} />
+
         </Stack.Navigator>
     )
   }

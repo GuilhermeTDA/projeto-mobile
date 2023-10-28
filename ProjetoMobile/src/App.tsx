@@ -15,7 +15,7 @@ import Ex3 from './screens/ex3';
 
 const App = () => {
   return (
-  // <Ex3/>
+ 
     <NavigationContainer>
       <HomeNavigator />
     </NavigationContainer>

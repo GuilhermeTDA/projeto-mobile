@@ -45,26 +45,25 @@ const Principal = ({ navigation, route }: HomeProps) => {
 
         <Text style={{ fontSize: 15 }}>Criar nota</Text>
       </Pressable>
+
+      <Pressable style={styles.notas} onPress={() => navigation.navigate('ListarNotas')}>
+
+        <Text style={{ fontSize: 15 }}>Listar Notas</Text>
+      </Pressable>
+
       <Pressable style={styles.notas} onPress={() => navigation.navigate('CadCliente')}>
 
         <Text style={{ fontSize: 15 }}>Criar Cliente</Text>
       </Pressable>
 
+      <Pressable style={styles.notas} onPress={() => navigation.navigate('ListarClientes')}>
 
-      <Pressable style={styles.botao} onPress={() => navigation.navigate('AlterarCliente', { id: 'string' })}>
-        <Text style={{ fontSize: 20 }}> Alterar cliente</Text>
+        <Text style={{ fontSize: 15 }}>Listar Cliente</Text>
       </Pressable>
 
-      <View style={styles.botoes}>
-        <Pressable style={styles.botao
-        } onPress={() => {}}>
-          <Text style={{ fontSize: 20 }}> Remover cliente</Text>
-        </Pressable>
-
-        {/* <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarCliente')}>
+      {/* <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarCliente')}>
           <Text style={{ fontSize: 20 }}> Listar clientes</Text>
         </Pressable> */}
-      </View>
 
 
 
@@ -122,12 +121,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
 },
-botoes: {
-  flexDirection: 'row',
-  alignItems: 'flex-end',
-  justifyContent: 'space-around',
-  flex: 1
+  botoes: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-around',
+    flex: 1
 
-},
+  },
 
 });

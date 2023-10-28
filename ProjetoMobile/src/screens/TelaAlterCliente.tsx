@@ -23,7 +23,7 @@ const cadastroCliente = ({ navigation, route }: AlterarClienteProps) => {
         setIsLoading(true);
 
         firestore()
-            .collection('Clientes')
+            .collection('Cliente')
             .doc(id)
             .update({
                 nome,
@@ -48,7 +48,7 @@ const cadastroCliente = ({ navigation, route }: AlterarClienteProps) => {
     async function carregar() {
         setIsLoading(true);
         const resultado = await firestore()
-            .collection('clientes')
+            .collection('Cliente')
             .doc(id)
             .get();
 
@@ -77,65 +77,55 @@ const cadastroCliente = ({ navigation, route }: AlterarClienteProps) => {
     return (
         <View style={styles.container}>
             <ScrollView>
-            <View style={styles.center}>
-                <Image style={styles.imagem}
-                    source={require('../assets/sonic.jpg')} />
-                <Text>Nome</Text>
+                <View style={styles.center}>
+                    {/* <Image style={styles.imagem}
+                        source={require('../assets/sonic.jpg')} /> */}
+                    <Text>Nome</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }} />
 
-                <Text>cpf</Text>
+                    <Text>cpf</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setCpf(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setCpf(text) }} />
 
-                <Text>Nome da Rua</Text>
+                    <Text>Nome da Rua</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setRua(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setRua(text) }} />
 
-                <Text>Número</Text>
+                    <Text>Número</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setNumero(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setNumero(text) }} />
 
-                <Text>Bairro</Text>
+                    <Text>Bairro</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setBairro(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setBairro(text) }} />
 
-                <Text>Complemento</Text>
+                    <Text>Complemento</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setComplemento(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setComplemento(text) }} />
 
-                <Text>Cidade</Text>
+                    <Text>Cidade</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setCidade(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setCidade(text) }} />
 
-                <Text>Estado</Text>
+                    <Text>Estado</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setEstado(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setEstado(text) }} />
 
-                <Text>data de nascimento</Text>
+                    <Text>data de nascimento</Text>
 
-                <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
+                    <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
 
-                <Pressable style={styles.botao} onPress={() => navigation.navigate('CadCliente')}>
-                    <Text style={{ fontSize: 20 }}> Voltar</Text>
-                </Pressable>
 
-                <Pressable style={styles.botao} onPress={() => alterarCliente()}>
-                    <Text style={{ fontSize: 20 }}>Salvar alteração</Text>
-                </Pressable>
-
-                <View style={styles.botoes}>
-                    <Pressable style={styles.botao} 
-                        onPress={() => {}}>
-                        <Text style={{ fontSize: 20 }}> Remover cliente</Text>
+                    <Pressable style={styles.botao} onPress={() => alterarCliente()}>
+                        <Text style={{ fontSize: 20 }}>Salvar alteração</Text>
                     </Pressable>
 
-                </View>
-                <Pressable style={styles.voltar} onPress={() => navigation.navigate('Login')}>
+                    <Pressable style={styles.voltar} onPress={() => navigation.navigate('Home')}>
 
-                    <Text style={{ fontSize: 15 }}>Voltar</Text>
-                </Pressable>
-            </View>
+                        <Text style={{ fontSize: 15 }}>Voltar</Text>
+                    </Pressable>
+                </View>
             </ScrollView>
         </View>
     )

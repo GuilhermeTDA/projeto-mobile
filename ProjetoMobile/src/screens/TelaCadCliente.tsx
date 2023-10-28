@@ -48,8 +48,8 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
             <View style={styles.container}>
 
                 <View style={styles.center}>
-                    <Image style={styles.imagem}
-                        source={require('')} />
+                    {/* <Image style={styles.imagem}
+                        source={require('')} /> */}
                     <Text>Nome</Text>
 
                     <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }} />
@@ -91,7 +91,7 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
                     </Pressable>
 
                 </View>
-                <Pressable style={styles.voltar} onPress={() => navigation.navigate('Login')}>
+                <Pressable style={styles.voltar} onPress={() => navigation.navigate('Home')}>
 
                     <Text style={{ fontSize: 15 }}>Voltar</Text>
                 </Pressable>
