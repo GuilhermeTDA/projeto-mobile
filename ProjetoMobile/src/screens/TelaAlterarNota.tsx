@@ -1,9 +1,10 @@
 import { Text, View, TextInput, StyleSheet, Pressable, Alert, Image } from 'react-native';
 import { useEffect, useState } from 'react';
 import { AlterarNotaProps} from '../types';
-import firestore from "@react-native-firebase/firestore";
 import { INotas } from '../models/INotas';
 import Carregamento from '../layouts/Carregamento';
+import firestore from "@react-native-firebase/firestore";
+
 
 
 const TelaAlterarNota = ({ navigation, route }: AlterarNotaProps) => {
