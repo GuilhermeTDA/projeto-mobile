@@ -16,6 +16,11 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
     const [dataNasc, setDataNasc] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+
+    function validateCpfInput (texto : string) {
+        setCpf(texto.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'));
+    };
+
     function cadastrarCliente() {
         setIsLoading(true);
 
@@ -48,15 +53,19 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
             <View style={styles.container}>
 
                 <View style={styles.center}>
-                    {/* <Image style={styles.imagem}
-                        source={require('')} /> */}
+                    <Image style={styles.imagem}
+                        source={require('../assets/batman.jpg')} />
                     <Text>Nome</Text>
 
                     <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }} />
 
                     <Text>cpf</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setCpf(text) }} />
+                    <TextInput style={styles.box}
+                        placeholder="###.###.###-##"
+                        keyboardType="numeric"
+                        value={cpf}
+                        onChangeText={(text) => {  validateCpfInput(text) }} />
 
                     <Text>Nome da Rua</Text>
 
@@ -64,7 +73,10 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
                     <Text>Número</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setNumero(text) }} />
+                    <TextInput style={styles.box}
+                        placeholder="Apenas números"
+                        keyboardType="numeric"
+                        onChangeText={(text) => { setNumero(text) }} />
 
                     <Text>Bairro</Text>
 
@@ -86,7 +98,9 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
                     <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
 
-                    <Pressable style={styles.botao} onPress={() => cadastrarCliente()}>
+                    <Pressable style={styles.botao}
+                    onPress={() => {
+                        cadastrarCliente(); }}>
                         <Text style={{ fontSize: 20 }}> Cadastrar cliente</Text>
                     </Pressable>
 
@@ -95,12 +109,12 @@ const cadastroCliente = ({ navigation, route }: ClienteProps) => {
 
                     <Text style={{ fontSize: 15 }}>Voltar</Text>
                 </Pressable>
-                
+
             </View>
 
-       
 
-         </ScrollView >
+
+        </ScrollView >
     );
 }
 

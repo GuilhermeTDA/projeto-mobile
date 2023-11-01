@@ -20,12 +20,12 @@ import ListaFlat from './ListaFlat';
 const Principal = ({ navigation, route }: HomeProps) => {
 
 
-  const lista = [
-    { key: 1, descricao: 'Joao' },
-    { key: 2, descricao: 'jorge' },
-    { key: 3, descricao: 'kleber' },
-    { key: 4, descricao: 'robson' },
-  ];
+  // const lista = [
+  //   { key: 1, descricao: 'Joao' },
+  //   { key: 2, descricao: 'jorge' },
+  //   { key: 3, descricao: 'kleber' },
+  //   { key: 4, descricao: 'robson' },
+  // ];
 
   // const listaSection = [
   //   { title: 'A', data: [{ key: 1, descricao: 'Ana' }] },
@@ -41,29 +41,27 @@ const Principal = ({ navigation, route }: HomeProps) => {
 
       <Button title="Go to Details" onPress={() => navigation.navigate('Detalhes')} />
 
-      <Pressable style={styles.notas} onPress={() => navigation.navigate('Notas')}>
 
-        <Text style={{ fontSize: 15 }}>Criar nota</Text>
-      </Pressable>
-
-      <Pressable style={styles.notas} onPress={() => navigation.navigate('ListarNotas')}>
-
-        <Text style={{ fontSize: 15 }}>Listar Notas</Text>
-      </Pressable>
-
-      <Pressable style={styles.notas} onPress={() => navigation.navigate('CadCliente')}>
+      <Pressable style={styles.botao} onPress={() => navigation.navigate('CadCliente')}>
 
         <Text style={{ fontSize: 15 }}>Criar Cliente</Text>
       </Pressable>
 
-      <Pressable style={styles.notas} onPress={() => navigation.navigate('ListarClientes')}>
+      <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarClientes', {clientAtend: ()=>{}})}>
 
         <Text style={{ fontSize: 15 }}>Listar Cliente</Text>
       </Pressable>
 
-      {/* <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarCliente')}>
-          <Text style={{ fontSize: 20 }}> Listar clientes</Text>
-        </Pressable> */}
+      <Pressable style={styles.botao} onPress={() => navigation.navigate('Atendimento')}>
+
+        <Text style={{ fontSize: 15 }}>Atendimento</Text>
+      </Pressable>
+
+      <Pressable style={styles.botao} onPress={() => navigation.navigate('ListarAtendimento')}>
+
+        <Text style={{ fontSize: 15 }}>Listar Atendimento</Text>
+      </Pressable>
+
 
 
 
@@ -110,8 +108,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   botao: {
-    width: 190,
-    height: 40,
+    width: 150,
+    height: 60,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
@@ -119,6 +117,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    margin:10,
 
 },
   botoes: {

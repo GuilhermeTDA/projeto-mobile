@@ -82,39 +82,40 @@ const cadastroCliente = ({ navigation, route }: AlterarClienteProps) => {
                         source={require('../assets/sonic.jpg')} /> */}
                     <Text>Nome</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setNome(text) }} />
+                    <TextInput style={styles.box} value={nome} onChangeText={(text) => { setNome(text) }} />
 
                     <Text>cpf</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setCpf(text) }} />
+                    <TextInput style={styles.box} value={cpf} onChangeText={(text) => { setCpf(text) }} />
 
                     <Text>Nome da Rua</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setRua(text) }} />
+                    <TextInput style={styles.box} value={rua} onChangeText={(text) => { setRua(text) }} />
 
                     <Text>Número</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setNumero(text) }} />
+                    <TextInput style={styles.box} value={numero}
+                    onChangeText={(text) => { setNumero(text) }} />
 
                     <Text>Bairro</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setBairro(text) }} />
+                    <TextInput style={styles.box} value={bairro} onChangeText={(text) => { setBairro(text) }} />
 
                     <Text>Complemento</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setComplemento(text) }} />
+                    <TextInput style={styles.box} value={complemento} onChangeText={(text) => { setComplemento(text) }} />
 
                     <Text>Cidade</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setCidade(text) }} />
+                    <TextInput style={styles.box} value={cidade} onChangeText={(text) => { setCidade(text) }} />
 
                     <Text>Estado</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setEstado(text) }} />
+                    <TextInput style={styles.box} value={estado} onChangeText={(text) => { setEstado(text) }} />
 
                     <Text>data de nascimento</Text>
 
-                    <TextInput style={styles.box} onChangeText={(text) => { setDataNasc(text) }} />
+                    <TextInput style={styles.box} value={dataNasc} onChangeText={(text) => { setDataNasc(text) }} />
 
 
                     <Pressable style={styles.botao} onPress={() => alterarCliente()}>
